@@ -1,12 +1,12 @@
 {
-    "ID": "8F1A123859D0489C8B72187FB724DD42",
-    "ActionKeyword": "tew",
-    "Name": "TerrariaWiki",
-    "Description": "Plugin to search the Terraria wiki with",
-    "Author": "jonesy-b-dev",
-    "Version": "1.1.1",
-    "Language": "csharp",
-    "Website": "https://github.com/jonesy-b-dev/TerrariaWiki-flow-Plugin",
-    "IcoPath": "icon.png",
-    "ExecuteFileName": "Flow.Launcher.Plugin.TerrariaWiki.dll"
+  "ID": "8F1A123859D0489C8B72187FB724DD42",
+  "ActionKeyword": "*",
+  "Name": "FandomSearch",
+  "Description": "A FlowLauncher plugin to effectivly search all of the Fandom wiki's",
+  "Author": "jonesy-b-dev",
+  "Version": "1.1.1",
+  "Language": "csharp",
+  "Website": "https://github.com/jonesy-b-dev/fandomSearch-flow-Plugin",
+  "IcoPath": "icon.png",
+  "ExecuteFileName": "Flow.Launcher.Plugin.FandomSearch.dll"
 }
