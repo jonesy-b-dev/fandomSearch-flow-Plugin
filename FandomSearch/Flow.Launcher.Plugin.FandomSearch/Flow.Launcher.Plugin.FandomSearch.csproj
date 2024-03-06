@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <AssemblyName>Flow.Launcher.Plugin.TerrariaWiki</AssemblyName>
-    <PackageId>Flow.Launcher.Plugin.TerrariaWiki</PackageId>
+    <AssemblyName>Flow.Launcher.Plugin.FandomSearch</AssemblyName>
+    <PackageId>Flow.Launcher.Plugin.FandomWiki</PackageId>
     <Authors>jonesy-b-dev</Authors>
-    <PackageProjectUrl>https://github.com/jonesy-b-dev/Flow.Launcher.Plugin.TerrariaWiki</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/jonesy-b-dev/Flow.Launcher.Plugin.TerrariaWiki</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jonesy-b-dev/Flow.Launcher.Plugin.FandomSearch</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jonesy-b-dev/Flow.Launcher.Plugin.FandomSearch</RepositoryUrl>
     <PackageTags>flow-launcher flow-plugin</PackageTags>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flow.Launcher.Plugin" Version="4.1.1" />
+    <PackageReference Include="Flow.Launcher.Plugin" Version="4.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
