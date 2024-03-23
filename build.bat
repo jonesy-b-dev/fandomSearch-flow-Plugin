@@ -3,7 +3,7 @@
 taskkill /im Flow.Launcher.exe
 pause 
 set "sourceFolder=.\FandomSearch\Flow.Launcher.Plugin.FandomSearch\bin\Debug"
-set "destinationFolder=C:\Users\jonas\AppData\Roaming\FlowLauncher\Plugins\FandomSearch-DEV\"
+set "destinationFolder=%APPDATA%\FlowLauncher\Plugins\FandomSearch-DEV"
 
 echo Copying files from %sourceFolder% to %destinationFolder%...
 
