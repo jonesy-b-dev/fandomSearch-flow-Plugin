@@ -1,0 +1,14 @@
+﻿{
+  "Fandoms": [
+    {
+      "Title": "Terraria",
+      "ActionKeyword": "tew",
+      "Url": "https://terraria.fandom.com/"
+    },
+    {
+      "Title": "GTA",
+      "ActionKeyword": "gta",
+      "Url": "https://gta.fandom.com/"
+    }
+  ]
+}

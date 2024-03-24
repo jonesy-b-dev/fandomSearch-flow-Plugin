@@ -7,17 +7,23 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using Flow.Launcher.Plugin.SharedCommands;
 using Newtonsoft.Json.Linq;
+using System.Linq;
+using Newtonsoft.Json;
+using System.IO;
+using System;
+
 
 namespace Flow.Launcher.Plugin.FandomSearch
 {
-    public class FandomSearch : IAsyncPlugin, ISettingProvider, IContextMenu
+    public class FandomSearch : IAsyncPlugin, ISettingProvider, IContextMenu, IAsyncReloadable
     {
         private PluginInitContext _context;
         private Settings _settings;
-       
+
         // Define variabkes for the plugin to use
-        private readonly string base_url = "https://terraria.fandom.com/";
-        private string query_url;
+        private List<string> baseUrls = new List<string>();
+        private List<string> actionKeywords = new List<string>();
+        private string query_url = "ben";
         private string jsonResult;
         private string finalUrl;
 
@@ -27,7 +33,8 @@ namespace Flow.Launcher.Plugin.FandomSearch
         // Initialine query url
         public async Task InitAsync(PluginInitContext context)
         {
-            query_url = base_url + "api.php?action=query&list=search&srwhat=text&format=json&srsearch=";
+            GetAllFandoms();
+            //query_url = base_url + "api.php?action=query&list=search&srwhat=text&format=json&srsearch=";
             _context = context;
         }
 
@@ -75,7 +82,7 @@ namespace Flow.Launcher.Plugin.FandomSearch
                         Action = e =>
                         {
                             // Make final url to search
-                            finalUrl = base_url + "wiki/" + itemWithunderscores;
+                            finalUrl =  "wiki/" + itemWithunderscores;
                             finalUrl.OpenInBrowserTab();
                             return true;
                         },
@@ -97,6 +104,31 @@ namespace Flow.Launcher.Plugin.FandomSearch
             };
 
             return results;
+        }
+
+        private void GetAllFandoms()
+        {
+            // Clear all the data so we have a fresh list
+            baseUrls.Clear();
+            actionKeywords.Clear();
+
+            // Get the path to the settings file
+            string fullPath = Path.Combine(Environment.CurrentDirectory, "settings.json");
+            
+            JObject jsonData = JObject.Parse(File.ReadAllText(fullPath));
+            JArray fandoms = (JArray)jsonData["Fandoms"];
+
+            foreach (JObject fandom in fandoms)
+            {
+                baseUrls.Add((string)fandom["Url"]);
+                actionKeywords.Add((string)fandom["ActionKeyword"]);
+            }
+
+        }
+
+        public async Task ReloadDataAsync()
+        {
+            GetAllFandoms();
         }
     }
 }
