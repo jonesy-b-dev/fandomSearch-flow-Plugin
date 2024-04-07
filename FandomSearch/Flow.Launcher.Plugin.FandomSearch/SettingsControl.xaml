@@ -1,20 +1,29 @@
-﻿<UserControl
-    x:Class="Flow.Launcher.Plugin.FandomSearch.SettingsControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Height="100"
-    d:DesignHeight="300"
-    d:DesignWidth="500"
-    mc:Ignorable="d">
-    <Grid Margin="40,40,10,0">
+﻿<UserControl x:Class="Flow.Launcher.Plugin.FandomSearch.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Height="400" Width="600">
+
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <CheckBox
-            Grid.Row="0"
-            Padding="8,0,0,0"/>
+
+        <!-- DataGrid to display settings -->
+        <DataGrid x:Name="SettingsDataGrid" Grid.Row="0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <!-- Action Keyword column -->
+                <DataGridTextColumn Header="Action Keyword" Binding="{Binding ActionKeyword}" Width="*" />
+
+                <!-- Title column -->
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Button to add a new row -->
+        <Button Grid.Row="1" Content="Add New Row" Click="AddNewRow_Click" HorizontalAlignment="Left" Margin="0,10,0,0" />
     </Grid>
 </UserControl>

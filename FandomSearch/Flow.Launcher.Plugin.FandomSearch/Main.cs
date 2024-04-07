@@ -58,7 +58,8 @@ namespace Flow.Launcher.Plugin.FandomSearch
 
         public async Task<List<Result>> QueryAsync(Query query, CancellationToken token)
         {
-            string selectedFandom;
+            string selectedFandom = "none";
+            string fandomUrl;
 
             if(query.Search.Contains(" "))
             {
@@ -74,35 +75,36 @@ namespace Flow.Launcher.Plugin.FandomSearch
                 if(formattedInput.Contains(actionKeyword))
                 {
                     selectedFandom = actionKeyword;
+                    fandomUrl = baseUrls[actionKeywords.IndexOf(actionKeyword)];
+                    query_url = fandomUrl + "api.php?action=query&list=search&srwhat=text&format=json&srsearch=";
                 }
             }
-            // Make request to terraria wiki api with the query the user has put in
-             using (var httpClient = new HttpClient())
-             {
-                jsonResult = await httpClient.GetStringAsync(query_url + query.Search);
-             }
 
-            // Store the daya
-            dynamic data = JObject.Parse(jsonResult);
-            // Also store as a JObject so we can check if it contains the error key
-            JObject dataObj = JObject.Parse(jsonResult);
 
-            // Check if the data has error key (happens when the user has not given an input yet)
-            if (dataObj.ContainsKey("error"))
+            // Check if we found a fandom to search on
+            if (selectedFandom != "none")
             {
+
                 // Make simple result 
                 var noResults = new List<Result>
                 {
-                    new Result
-                    {
-                        Title = $"Start typing to search the wiki...",
-                        IcoPath = "icon.png"
-                    }
+                    new Result{ }
                 };
                 return await Task.FromResult(noResults);
             }
             else
             {
+                // Make request to terraria wiki api with the query the user has put in
+                using (var httpClient = new HttpClient())
+                {
+                    jsonResult = await httpClient.GetStringAsync(query_url + query.Search);
+                }
+
+                // Store the daya
+                dynamic data = JObject.Parse(jsonResult);
+                // Also store as a JObject so we can check if it contains the error key
+                JObject dataObj = JObject.Parse(jsonResult);
+
                 var results = new List<Result>();
 
                 // Loop over all the results and make a result item for them all
